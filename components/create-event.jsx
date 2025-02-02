@@ -54,3 +54,11 @@ export default function CreateEventDrawer() {
     </Drawer>
   );
 }
+
+export default function CreateEventDrawer() {
+  return (
+    <Suspense fallback={null}>
+      <CreateEventDrawer />
+    </Suspense>
+  );
+}
