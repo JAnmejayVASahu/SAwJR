@@ -19,15 +19,16 @@ export default function CreateEventDrawer() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (!searchParams) return; // Prevent errors if searchParams is undefined
     const create = searchParams.get("create");
-    setIsOpen(create === "true");
+    if (create === "true") {
+      setIsOpen(true);
+    }
   }, [searchParams]);
 
   const handleClose = () => {
     setIsOpen(false);
     if (searchParams.get("create") === "true") {
-      router.replace(window.location.pathname);
+      router.replace(window?.location.pathname);
     }
   };
 
