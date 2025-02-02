@@ -19,25 +19,15 @@ export default function CreateEventDrawer() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    if (!searchParams) return; // Prevent errors if searchParams is undefined
     const create = searchParams.get("create");
-    if (create === "true") {
-      setIsOpen(true);
-    }
+    setIsOpen(create === "true");
   }, [searchParams]);
-
-  // State can be exposed to our app in case we want to manually open the drawer 👇
-  // useEffect(() => {
-  //   window.openCreateEventDrawer = () => setIsOpen(true);
-
-  //   return () => {
-  //     delete window.openCreateEventDrawer;
-  //   };
-  // }, []);
 
   const handleClose = () => {
     setIsOpen(false);
     if (searchParams.get("create") === "true") {
-      router.replace(window?.location.pathname);
+      router.replace(window.location.pathname);
     }
   };
 
